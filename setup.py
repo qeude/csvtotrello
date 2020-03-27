@@ -12,5 +12,10 @@ setup(
     install_requires=[
         'py-trello',
     ],
+    entry_points={
+        'console_scripts': [
+            'csvtotrello = csvtotrello.bulk_import:main'
+        ]
+    },
     zip_safe=False
 )

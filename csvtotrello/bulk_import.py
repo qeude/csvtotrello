@@ -1,5 +1,10 @@
 import csv
+import sys
 from trello import TrelloClient
+
+def main():
+    trello_api_key, trello_token, board_id, file_path = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+    bulk_import(trello_api_key=trello_api_key, trello_token=trello_token, board_id=board_id, file_path=file_path)
 
 
 def bulk_import(trello_api_key, trello_token, board_id, file_path):
