@@ -4,11 +4,11 @@ from trello import TrelloClient
 file_path='sample.csv'
 
 client = TrelloClient(
-    api_key='***REMOVED***',
-    token='***REMOVED***'
+    api_key='API_KEY',
+    token='TOKEN'
 )
 
-board = client.get_board('***REMOVED***')
+board = client.get_board('BOARD_ID')
 backlog_list = board.list_lists()[0]
 test = backlog_list.list_cards()[0]
 
