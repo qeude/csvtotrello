@@ -1,5 +1,6 @@
 import csv
 import sys
+from collections import defaultdict
 from trello import TrelloClient
 
 def main() -> None:
@@ -20,6 +21,7 @@ def bulk_import(trello_api_key: str, trello_token: str, board_id: str, file_path
     with open(file_path) as csv_file:
         csv_dict = csv.DictReader(csv_file, delimiter=';')
 
+        items = defaultdict(list)
         user_story = ''
         card = None
         checklist_items = []
@@ -28,11 +30,21 @@ def bulk_import(trello_api_key: str, trello_token: str, board_id: str, file_path
             task = row["Task"]
             comment = row["Comment"]
             load = row["Load"]  
+            
+            if category is '':
+                category = "Others"
+            else:
+                category = " ".join(category.split())
+            
+            if load is '':
+                load = 'X'
+            
+            if comment is not '':
+                comment = '- {}'.format(comment)
 
-            checklist_items.append(task + " (" + load +") - "+ comment )
-            if user_story != category:  
-                if card is not None and checklist_items :
-                    card.add_checklist('Tasks', checklist_items, itemstates=None)
-                    checklist_items = []
-                user_story = category
-                card = backlog_list.add_card(name=category)
+            checklist_item = "({}) {} {}".format(load, task, comment)
+            items[category].append(checklist_item)
+
+    for key in items:
+        card = backlog_list.add_card(name=key)
+        card.add_checklist('Tasks', items[key], itemstates=None)
