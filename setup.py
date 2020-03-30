@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='csvtotrello',
-    version='0.3.1',
+    version='0.3.2',
     description='A package to bulk import csv backlog into Trello',
     long_description=long_description,
     long_description_content_type='text/markdown',
