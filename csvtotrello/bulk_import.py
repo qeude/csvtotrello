@@ -29,7 +29,7 @@ def bulk_import(trello_api_key: str, trello_token: str, board_id: str, file_path
             comment = row["Comment"]
             load = row["Load"]  
 
-            checklist_items.append(task + " (" + load +")" )
+            checklist_items.append(task + " (" + load +") - "+ comment )
             if user_story != category:  
                 if card is not None and checklist_items :
                     card.add_checklist('Tasks', checklist_items, itemstates=None)
