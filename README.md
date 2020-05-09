@@ -2,6 +2,9 @@
 
 💻 Basic Python script to bulk import CSV backlog into Trello
 
+## ⚠️ Important note
+CSV separator of your CSV document have to be set to `;`.
+
 ## 🛠 Install
 `pip install csvtotrello`
 
